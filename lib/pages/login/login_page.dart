@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hook_food/pages/login/home.dart';
+import 'package:hook_food/pages/home/home.dart';
 
 class LoginPage extends StatefulWidget {
+  static const routeName = "/login";
+
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -22,10 +24,11 @@ class _LoginPageState extends State<LoginPage> {
 
       if(input.length == 6){
         if(input == "123456"){
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => Home()),
-          );
+          // Navigator.pushReplacement(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => Home()),
+          // );
+          Navigator.pushReplacementNamed(context, "/home");
         }
         else{
           _errorDialog();
@@ -69,6 +72,64 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Container _buildButton() {
+    return Container(
+      // color: Colors.pink,
+      child: Column(
+        children: [
+          [ 1, 2, 3],
+          [ 4, 5, 6],
+          [ 7, 8, 9],
+          [-2, 0,-1],
+        ].map((row){
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: row.map((item){
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: LoginButton(
+                  num: item,
+                  onClick: (){_handleClickButton(item);},
+                ),
+              );
+            }).toList(),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Expanded _buildLockInfoPanel(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.lock_outline,
+            size: 100,
+          ),
+          Text(
+            "LOGIN",
+            style: Theme.of(context).textTheme.headline1,
+          ),
+          Text(
+            "Enter PIN to login",
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+          Text(""),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for(int i=1; i<=6; i++)
+                _inputContainer(i),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,62 +149,8 @@ class _LoginPageState extends State<LoginPage> {
         child: SafeArea(
           child: Column(
             children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.lock_outline,
-                      size: 100,
-                    ),
-                    Text(
-                      "LOGIN",
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                    Text(
-                      "Enter PIN to login",
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    Text(""),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _inputContainer(1),
-                        _inputContainer(2),
-                        _inputContainer(3),
-                        _inputContainer(4),
-                        _inputContainer(5),
-                        _inputContainer(6),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                // color: Colors.pink,
-                child: Column(
-                  children: [
-                    [ 1, 2, 3],
-                    [ 4, 5, 6],
-                    [ 7, 8, 9],
-                    [-2, 0,-1],
-                  ].map((row){
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: row.map((item){
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: LoginButton(
-                            num: item,
-                            onClick: (){_handleClickButton(item);},
-                          ),
-                        );
-                      }).toList(),
-                    );
-                  }).toList(),
-                ),
-              ),
+              _buildLockInfoPanel(context),
+              _buildButton(),
             ],
           ),
         ),
