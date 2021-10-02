@@ -15,9 +15,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
         textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          bodyText2: TextStyle(fontSize: 25),
+          headline1: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+          headline2: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+          headline3: TextStyle(fontSize: 40),
+          headline4: TextStyle(fontSize: 35),
+          headline5: TextStyle(fontSize: 30),
+          headline6: TextStyle(fontSize: 15),
+          bodyText1: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+          bodyText2: TextStyle(fontSize: 15, color: Colors.white),
         ),
       ),
       // home: LoginPage(),
@@ -25,7 +30,7 @@ class MyApp extends StatelessWidget {
         LoginPage.routeName: (context) => const LoginPage(),
         Home.routeName: (context) => const Home(),
       },
-      initialRoute: Home.routeName,
+      initialRoute: LoginPage.routeName,
     );
   }
 }
