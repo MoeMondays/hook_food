@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hook_food/pages/home/home.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = "/login";
@@ -24,10 +23,6 @@ class _LoginPageState extends State<LoginPage> {
 
       if(input.length == 6){
         if(input == "123456"){
-          // Navigator.pushReplacement(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => Home()),
-          // );
           Navigator.pushReplacementNamed(context, "/home");
         }
         else{
@@ -114,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Text(
             "Enter PIN to login",
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.headline6,
           ),
           Text(""),
 
@@ -186,7 +181,7 @@ class LoginButton extends StatelessWidget {
           child: num >= 0
               ? Text(
                   num.toString(),
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headline5,
                 )
               : (num == -1 ? Icon(Icons.backspace_outlined, size: 30) : SizedBox.shrink()),
         ),
