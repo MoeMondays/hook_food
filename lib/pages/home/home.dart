@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hook_food/pages/home/food_list_page.dart';
 import 'package:hook_food/pages/home/order_page.dart';
-import 'package:hook_food/pages/home/profile_page.dart';
+import 'package:hook_food/pages/profile/profile_page.dart';
 
 class Home extends StatefulWidget {
   static const routeName = "/home";
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
-                    child: Text("Thanakorn Hemsart", style: Theme.of(context).textTheme.bodyText1),
+                    child: Text("Thanakorn Hemsart", style: Theme.of(context).textTheme.headline6),
                   ),
                   Text("hemsart_t@silpakorn.edu", style: Theme.of(context).textTheme.bodyText2),
                 ],
