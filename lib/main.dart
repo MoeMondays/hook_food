@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         Home.routeName: (context) => const Home(),
         FoodDetail.routeName: (context) => const FoodDetail(),
       },
-      initialRoute: Home.routeName,
+      initialRoute: LoginPage.routeName,
     );
   }
 }
