@@ -18,8 +18,8 @@ class ProfilePage extends StatelessWidget {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(40.0),
                   child: Container(
-                    width: 200,
-                    height: 200,
+                    width: 150,
+                    height: 150,
                     child: Image.asset('assets/images/profile.png'),
                   )
               ),
@@ -27,9 +27,9 @@ class ProfilePage extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.only(bottom: 5),
-              child: Text("Thanakorn Hemsart", style: Theme.of(context).textTheme.headline2),
+              child: Text("Thanakorn Hemsart", style: Theme.of(context).textTheme.headline6),
             ),
-            Text("hemsart_t@silpakorn.edu", style: Theme.of(context).textTheme.headline4),
+            Text("hemsart_t@silpakorn.edu", style: Theme.of(context).textTheme.bodyText1),
           ],
         ),
       ),

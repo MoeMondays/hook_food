@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hook_food/pages/home/food_detail.dart';
-import 'package:hook_food/pages/home/home.dart';
+import 'package:hook_food/pages/home/home_page.dart';
 import 'package:hook_food/pages/login/login_page.dart';
 
 void main() {
@@ -26,10 +26,9 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(fontSize: 15,),
         ),
       ),
-      // home: LoginPage(),
       routes: {
         LoginPage.routeName: (context) => const LoginPage(),
-        Home.routeName: (context) => const Home(),
+        HomePage.routeName: (context) => const HomePage(),
         FoodDetail.routeName: (context) => const FoodDetail(),
       },
       initialRoute: LoginPage.routeName,

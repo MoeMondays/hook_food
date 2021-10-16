@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hook_food/pages/home/food_list_page.dart';
 import 'package:hook_food/pages/home/order_page.dart';
 import 'package:hook_food/pages/profile/profile_page.dart';
+import 'package:http/http.dart' as http;
 
-class Home extends StatefulWidget {
+import 'models/food_items.dart';
+
+class HomePage extends StatefulWidget {
   static const routeName = "/home";
 
-  const Home({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   var _subPageIndex = 0;
   var _selectedBottomNavIndex = 0;
   List _title = ["Food","Profile"];
@@ -70,10 +75,44 @@ class _HomeState extends State<Home> {
     });
   }
 
+  _test() async {
+    var url = Uri.parse("https://cpsu-test-api.herokuapp.com/foods");
+    var response = await http.post(url, body: {
+      "pin": "123456"
+    });
+    if(response.statusCode == 200){
+      Map<String,dynamic> jsonBody = json.decode(response.body);
+      String status = jsonBody["status"];
+      String? message = jsonBody["message"];
+      List<dynamic> data = jsonBody["data"];
+
+      var foodList = data.map((element) => FoodItems(
+        id: element["id"],
+        name: element["name"],
+        price: element["price"],
+        image: element["image"],
+      )).toList();
+
+      print("press");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title[_page]),),
+      appBar: AppBar(
+        title: Text(_title[_page]),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: IconButton(onPressed: (){}, icon: Icon(Icons.refresh)),
+          ),
+        ],
+      ),
 
       drawer: Drawer(
         child: ListView(
@@ -117,6 +156,11 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: _test,
+        child: Icon(Icons.add),
       ),
 
       bottomNavigationBar: _subPageIndex == 0 ? BottomNavigationBar(
